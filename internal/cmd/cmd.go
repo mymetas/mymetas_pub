@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"context"
-	"fmt"
 
 	"mymetas_pub/internal/controller"
 
@@ -26,15 +25,6 @@ var (
 			})
 			s.Run()
 			return nil
-		},
-	}
-	HttpWeb3ClientVersion = gcmd.Command{
-		Name:  "httpWeb3ClientVersion",
-		Usage: "httpWeb3ClientVersion",
-		Brief: "http web3ClientVersion",
-		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
-			fmt.Println("http web3Clientversion")
-			return
 		},
 	}
 )

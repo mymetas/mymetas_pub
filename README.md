@@ -7,3 +7,8 @@ cmd: <https://gfcdn.johng.cn/pages/viewpage.action?pageId=35357521/>
 go run main.go -h
 go run main.go httpWeb3ClientVersion
 ```
+
+## 2, add web3_clientVersion
+```
+go run main.go httpWeb3ClientVersion
+```
