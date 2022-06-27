@@ -31,6 +31,10 @@ go run main.go httpRpcWeb3ClientVersion
 ```
 go run main.go httpRpcEthAccounts
 ```
+### 4.1 rpc dial
+```
+go run main.go  ethRpcDial
+```
 ## 5, add ethclient
 ```
 go run main.go ethClient
