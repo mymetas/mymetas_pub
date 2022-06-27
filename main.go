@@ -17,5 +17,8 @@ func main() {
 
 	//use eth tools
 	cmd.Main.AddCommand(&cmd.EthToolsDial)
+
+	// private key, public key & account
+	cmd.Main.AddCommand(&cmd.GenerateKey)
 	cmd.Main.Run(gctx.New())
 }
