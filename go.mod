@@ -1,4 +1,4 @@
-module github.com/mymetas/mymetas_pub
+module mymetas_pub
 
 go 1.15
 

@@ -21,4 +21,12 @@ go run main.go httpRpcWeb3ClientVersion
 ## 4, add EthAccounts
     * Req/Rsp 定义从 cmd文件移动到 util
     * 出现GOPATH问题（同包文件不能引用结构体Req/Rsp）
-    * go get https://github.com/mymetas/mymetas_pub.git
+    * go get github.com/mymetas/mymetas_pub
+      - ./pkg/mod/cache/download/github.com/mymetas/mymetas_pub
+    * go.mod 文件启用了module模式，因此不是 GOPATH, GOROOT 的包管理模式
+    * [彻底搞懂golang的GOROOT和GOPATH](https://blog.csdn.net/qq_38151401/article/details/105729884)
+      - GOROOT 是系统代码，相当于JDK
+      - GOPATH 是用户代码包
+      - go.mod启用了module包管理模式，就不用GOPATH方式了
+```
+```
