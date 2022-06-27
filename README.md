@@ -1,6 +1,12 @@
 # mymetas_pub
+## 1. ganache start <https://blog.mymetas.top/posts/2022-02-15-1-eth_learn_2_eth_dev_env/#%E4%BA%94ganache-cli-%E4%BD%BF%E7%94%A8/>
+```
+# ganache-cli -d
+# geth attach http://localhost:8545      //另一个终端登录到控制台
 
-## 1. add one cmd 
+```
+## 2. 几个测试 
+* add one cmd 
 cmd: <https://gfcdn.johng.cn/pages/viewpage.action?pageId=35357521/>
 
 ```
@@ -8,17 +14,17 @@ go run main.go -h
 go run main.go httpWeb3ClientVersion
 ```
 
-## 2, add web3_clientVersion
+* add web3_clientVersion
 ```
 go run main.go httpWeb3ClientVersion
 ```
 
-## 3, add httpRpcMsg
+* add httpRpcMsg
 ```
 go run main.go httpRpcWeb3ClientVersion
 ```
 
-## 4, add EthAccounts
+* add EthAccounts
     * Req/Rsp 定义从 cmd文件移动到 util
     * 出现GOPATH问题（同包文件不能引用结构体Req/Rsp）
     * go get github.com/mymetas/mymetas_pub
@@ -31,11 +37,11 @@ go run main.go httpRpcWeb3ClientVersion
 ```
 go run main.go httpRpcEthAccounts
 ```
-### 4.1 rpc dial
+*  rpc dial
 ```
 go run main.go  ethRpcDial
 ```
-## 5, add ethclient
+* add ethclient
 ```
 go run main.go ethClient
 ```
