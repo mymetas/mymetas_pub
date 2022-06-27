@@ -29,4 +29,5 @@ go run main.go httpRpcWeb3ClientVersion
       - GOPATH 是用户代码包
       - go.mod启用了module包管理模式，就不用GOPATH方式了
 ```
+go run main.go httpRpcEthAccounts
 ```
