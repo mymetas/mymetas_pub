@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"mymetas_pub/internal/service/eth"
 	"net/http"
 	"time"
 
@@ -24,23 +25,23 @@ var (
 			// 	"params": [],
 			// 	"id": 1337
 			// 	}`
-			rpcRequest := RpcRequest{
+			rpcRequest := eth.RpcRequest{
 				JsonRpc: "2.0",
 				Method:  "web3_clientVersion",
 				Params:  []interface{}{}, //type interface{}, {} is null, [] is array
 				Id:      time.Now().Unix(),
 			}
 			payload, err := json.Marshal(rpcRequest)
-			assert(err)
+			eth.Assert(err)
 			fmt.Println("payload: ", string(payload))
 			rsp, err := http.Post("http://localhost:8545", "application/json", bytes.NewBuffer([]byte(payload)))
-			assert(err)
+			eth.Assert(err)
 			ret, err := ioutil.ReadAll(rsp.Body)
-			assert(err)
+			eth.Assert(err)
 			fmt.Println("http web3_clientVersion response: \r\n", string(ret))
-			var rpcResponse RpcResponse
+			var rpcResponse eth.RpcResponse
 			err = json.Unmarshal(ret, &rpcResponse)
-			assert(err)
+			eth.Assert(err)
 			fmt.Println("http web3_clientVersion response unmarshal\r\n", rpcResponse)
 			return
 		},

@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"io/ioutil"
+	"mymetas_pub/internal/service/eth"
 	"net/http"
 
 	"github.com/gogf/gf/v2/os/gcmd"
@@ -24,9 +25,9 @@ var (
 				}`
 
 			rsp, err := http.Post("http://localhost:8545", "application/json", bytes.NewBuffer([]byte(msg)))
-			assert(err)
+			eth.Assert(err)
 			ret, err := ioutil.ReadAll(rsp.Body)
-			assert(err)
+			eth.Assert(err)
 			fmt.Println("http web3_clientVersion \r\n", string(ret))
 			return
 		},

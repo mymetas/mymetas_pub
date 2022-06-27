@@ -14,5 +14,8 @@ func main() {
 	cmd.Main.AddCommand(&cmd.HttpRpcEthAccounts)
 	cmd.Main.AddCommand(&cmd.EthRpcDial)
 	cmd.Main.AddCommand(&cmd.EthClient)
+
+	//use eth tools
+	cmd.Main.AddCommand(&cmd.EthToolsDial)
 	cmd.Main.Run(gctx.New())
 }

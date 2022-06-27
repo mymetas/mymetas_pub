@@ -19,8 +19,11 @@ func rpcDialWeb3ClientVersion() {
 func rpcDialWeb3Sha3() {
 	client, _ := rpc.Dial("http://localhost:8545")
 	bytes := []byte("this is demo")
-	data := "0x" + common.Bytes2Hex(bytes) //notice  byte  2  hex, must add 0x
+
+	//notice  byte  2  hex, must add 0x
+	data := "0x" + common.Bytes2Hex(bytes)
 	fmt.Println("data is: ", string(data))
+
 	var hash string
 	_ = client.Call(&hash, "web3_sha3", data)
 	fmt.Println("hash: ", hash)
