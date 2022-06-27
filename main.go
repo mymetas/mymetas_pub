@@ -10,5 +10,6 @@ import (
 
 func main() {
 	cmd.Main.AddCommand(&cmd.HttpWeb3ClientVersion)
+	cmd.Main.AddCommand(&cmd.HttpRpcWeb3ClientVersion)
 	cmd.Main.Run(gctx.New())
 }

@@ -12,3 +12,8 @@ go run main.go httpWeb3ClientVersion
 ```
 go run main.go httpWeb3ClientVersion
 ```
+
+## 3, add httpRpcMsg
+```
+go run main.go httpRpcWeb3ClientVersion
+```
