@@ -13,20 +13,14 @@ import (
 )
 
 var (
-	HttpRpcWeb3ClientVersion = gcmd.Command{
-		Name:  "httpRpcWeb3ClientVersion",
-		Usage: "httpRpcWeb3ClientVersion",
-		Brief: "http Rpc web3ClientVersion",
+	HttpRpcEthAccounts = gcmd.Command{
+		Name:  "httpRpcEthAccounts",
+		Usage: "httpRpcEthAccounts",
+		Brief: "http Rpc ethAccounts",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
-			// msg := `{
-			// 	"jsonrpc": "2.0",
-			// 	"method": "web3_clientVersion",
-			// 	"params": [],
-			// 	"id": 1337
-			// 	}`
 			rpcRequest := RpcRequest{
 				JsonRpc: "2.0",
-				Method:  "web3_clientVersion",
+				Method:  "eth_accounts",
 				Params:  []interface{}{}, //type interface{}, {} is null, [] is array
 				Id:      time.Now().Unix(),
 			}
@@ -37,11 +31,11 @@ var (
 			assert(err)
 			ret, err := ioutil.ReadAll(rsp.Body)
 			assert(err)
-			fmt.Println("http web3_clientVersion response: \r\n", string(ret))
+			fmt.Println("http web3_eth_accounts response: \r\n", string(ret))
 			var rpcResponse RpcResponse
 			err = json.Unmarshal(ret, &rpcResponse)
 			assert(err)
-			fmt.Println("http web3_clientVersion response unmarshal\r\n", rpcResponse)
+			fmt.Println("http web3_eth_accounts response unmarshal\r\n", rpcResponse)
 			return
 		},
 	}
