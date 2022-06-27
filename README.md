@@ -1,5 +1,5 @@
 # mymetas_pub
-## 1. ganache start <https://blog.mymetas.top/posts/2022-02-15-1-eth_learn_2_eth_dev_env/#%E4%BA%94ganache-cli-%E4%BD%BF%E7%94%A8/>
+## 1. ganache start [以太坊开发（二）以太坊开发环境](https://blog.mymetas.top/posts/2022-02-15-1-eth_learn_2_eth_dev_env/#%E4%BA%94ganache-cli-%E4%BD%BF%E7%94%A8/)
 ```
 # ganache-cli -d
 # geth attach http://localhost:8545      //另一个终端登录到控制台
