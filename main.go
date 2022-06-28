@@ -20,5 +20,6 @@ func main() {
 
 	// private key, public key & account
 	cmd.Main.AddCommand(&cmd.GenerateKey)
+	cmd.Main.AddCommand(&cmd.GenerateKeyStoreFile)
 	cmd.Main.Run(gctx.New())
 }

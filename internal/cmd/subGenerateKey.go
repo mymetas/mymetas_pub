@@ -11,7 +11,7 @@ import (
 	"github.com/gogf/gf/v2/os/gcmd"
 )
 
-func prvKeyToPublicAndAddress(prvKey *ecdsa.PrivateKey) string {
+func PrvKeyToPublicAndAddress(prvKey *ecdsa.PrivateKey) string {
 	fmt.Println("prevKey is:", prvKey)
 	prvKeyBytes := crypto.FromECDSA(prvKey)
 	generatePrivateKey := hexutil.Encode(prvKeyBytes)
@@ -34,7 +34,7 @@ func generateKey() string {
 	prvKey, err := crypto.GenerateKey()
 	eth.Assert(err)
 
-	return prvKeyToPublicAndAddress(prvKey)
+	return PrvKeyToPublicAndAddress(prvKey)
 }
 
 func importPrivateKey(hexPrivate string) {
@@ -42,11 +42,11 @@ func importPrivateKey(hexPrivate string) {
 	prvKey, err := crypto.HexToECDSA(hexPrivate[2:])
 	eth.Assert(err)
 
-	privateKey := prvKeyToPublicAndAddress(prvKey)
+	privateKey := PrvKeyToPublicAndAddress(prvKey)
 	fmt.Println("\r\nexport PrivateKey: ", privateKey)
 
 	if privateKey != hexPrivate {
-		panic("private key prvKeyToPublicAndAddress error")
+		panic("private key PrvKeyToPublicAndAddress error")
 	}
 }
 
