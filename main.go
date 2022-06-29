@@ -20,6 +20,7 @@ func main() {
 	cmd.Main.AddCommand(&cmd.EthToolsGetBalance)
 	cmd.Main.AddCommand(&cmd.EthToolsSendTransaction)
 	cmd.Main.AddCommand(&cmd.EthToolsSendRawTransaction)
+	cmd.Main.AddCommand(&cmd.EthToolsDeployAccessContract1)
 
 	// private key, public key & account
 	cmd.Main.AddCommand(&cmd.GenerateKey)
