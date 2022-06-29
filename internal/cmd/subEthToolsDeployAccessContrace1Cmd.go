@@ -71,66 +71,6 @@ func deployHappyTokenContract() {
 	fmt.Println("done.")
 }
 
-func accessContractTransfer1() {
-	fmt.Println("access contract theory demo")
-
-	abiBytes, err := ioutil.ReadFile(abiBytesPath)
-	eth.Assert(err)
-	tokenAbi, err := abi.JSON(strings.NewReader(string(abiBytes)))
-	eth.Assert(err)
-
-	addrBytes, err := ioutil.ReadFile(happyTokenAddrPath)
-	eth.Assert(err)
-	contractAddress := common.HexToAddress(string(addrBytes))
-	fmt.Println("contract address: ", contractAddress.Hex())
-
-	client, err := eth.Dial("http://localhost:8545")
-	eth.Assert(err)
-
-	ctx := context.Background()
-
-	accounts, err := client.EthAccounts(ctx)
-	eth.Assert(err)
-
-	//transfer from account 0 => 1
-
-	data, err := tokenAbi.Pack(
-		"transfer",
-		accounts[1],
-		big.NewInt(100),
-	)
-
-	eth.Assert(err)
-	msg := map[string]interface{}{
-		"from": accounts[0],
-		"to":   contractAddress,
-		"gas":  big.NewInt(2000000),
-		"data": "0x" + common.Bytes2Hex(data),
-	}
-	txid, err := client.EthSendTransaction(ctx, msg)
-	eth.Assert(err)
-
-	fmt.Println("txid: ", txid.Hex())
-
-	//balanceOf
-	data, err = tokenAbi.Pack(
-		"balanceOf",
-		accounts[0],
-	)
-	msg = map[string]interface{}{
-		"from": accounts[0],
-		"to":   contractAddress,
-		"data": "0x" + common.Bytes2Hex(data),
-	}
-	ret, err := client.EthCall(ctx, msg)
-	eth.Assert(err)
-	fmt.Println("balance: ", ret)
-
-	balanceOut, err1 := tokenAbi.Unpack("balanceOf", ret)
-	eth.Assert(err1)
-	fmt.Println("balance decoded: ", balanceOut)
-}
-
 func accessContractTransfer() {
 	fmt.Println("access contract theory demo")
 
@@ -195,7 +135,6 @@ func accessContractTransfer() {
 
 func ethToolsDeployAccessContract1() {
 	deployHappyTokenContract()
-	//accessContractTransfer1()
 	accessContractTransfer()
 }
 
