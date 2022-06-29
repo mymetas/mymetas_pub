@@ -14,17 +14,13 @@ import (
 	"github.com/gogf/gf/v2/os/gcmd"
 )
 
-var abiBytesPath = "internal/service/eth/contract/build/TestErc20Token.abi"
-var binHexBytesPath = "internal/service/eth/contract/build/TestErc20Token.bin"
-var happyTokenAddrPath = "internal/service/eth/contract/HappyToken.addr"
-
 func deployHappyTokenContract() {
 	fmt.Println("deploy contract theory demo")
-	abiBytes, err := ioutil.ReadFile(abiBytesPath)
+	abiBytes, err := ioutil.ReadFile(AbiBytesPath)
 	eth.Assert(err)
 	//fmt.Println(abiBytes)
 
-	binHexBytes, err := ioutil.ReadFile(binHexBytesPath)
+	binHexBytes, err := ioutil.ReadFile(BinHexBytesPath)
 	eth.Assert(err)
 	binBytes := common.Hex2Bytes(string(binHexBytes))
 	//fmt.Println(binBytes)
@@ -66,7 +62,7 @@ func deployHappyTokenContract() {
 	receipt, err := client.EthGetTransactionReceipt(ctx, txid)
 	eth.Assert(err)
 	fmt.Println("contract address: ", receipt.ContractAddress.Hex())
-	err = ioutil.WriteFile(happyTokenAddrPath, []byte(receipt.ContractAddress.Hex()), 0644)
+	err = ioutil.WriteFile(HappyTokenAddrPath, []byte(receipt.ContractAddress.Hex()), 0644)
 	eth.Assert(err)
 	fmt.Println("done.")
 }
@@ -74,12 +70,12 @@ func deployHappyTokenContract() {
 func accessContractTransfer() {
 	fmt.Println("access contract theory demo")
 
-	abiBytes, err := ioutil.ReadFile(abiBytesPath)
+	abiBytes, err := ioutil.ReadFile(AbiBytesPath)
 	eth.Assert(err)
 	tokenAbi, err := abi.JSON(strings.NewReader(string(abiBytes)))
 	eth.Assert(err)
 
-	addrBytes, err := ioutil.ReadFile(happyTokenAddrPath)
+	addrBytes, err := ioutil.ReadFile(HappyTokenAddrPath)
 	eth.Assert(err)
 	contractAddress := common.HexToAddress(string(addrBytes))
 	fmt.Println("contract address: ", contractAddress.Hex())

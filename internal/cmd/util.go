@@ -8,6 +8,10 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 )
 
+var AbiBytesPath = "internal/service/eth/contract/build/TestErc20Token.abi"
+var BinHexBytesPath = "internal/service/eth/contract/build/TestErc20Token.bin"
+var HappyTokenAddrPath = "internal/service/eth/contract/HappyToken.addr"
+
 // type RpcRequest struct {
 // 	JsonRpc string        `json:"jsonrpc"`
 // 	Method  string        `json:"method"`
