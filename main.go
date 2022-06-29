@@ -17,6 +17,9 @@ func main() {
 
 	//use eth tools
 	cmd.Main.AddCommand(&cmd.EthToolsDial)
+	cmd.Main.AddCommand(&cmd.EthToolsGetBalance)
+	cmd.Main.AddCommand(&cmd.EthToolsSendTransaction)
+	cmd.Main.AddCommand(&cmd.EthToolsSendRawTransaction)
 
 	// private key, public key & account
 	cmd.Main.AddCommand(&cmd.GenerateKey)
