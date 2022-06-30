@@ -9,7 +9,7 @@ import (
 	"github.com/gogf/gf/v2/os/gcmd"
 )
 
-func pull_logs_monitor() {
+func push_logs_monitor() {
 	client, err := eth.Dial("http://localhost:8545")
 	eth.Assert(err)
 
@@ -36,19 +36,19 @@ func pull_logs_monitor() {
 	}
 }
 
-func ethToolsLogsMonitorPull() {
-	fmt.Println("logs monitor pull demo")
+func ethToolsLogsMonitorPush() {
+	fmt.Println("logs monitor push demo")
 	go TriggerSendContractTransaction()
-	pull_logs_monitor()
+	push_logs_monitor()
 }
 
 var (
-	EthToolsLogsMonitorPull = gcmd.Command{
-		Name:  "ethToolsLogsMonitorPull",
-		Usage: "ethToolsLogsMonitorPull",
-		Brief: "eth tools logs monitor pull  ",
+	EthToolsLogsMonitorPush = gcmd.Command{
+		Name:  "ethToolsLogsMonitorPush",
+		Usage: "ethToolsLogsMonitorPush",
+		Brief: "eth tools logs  monitor Push  ",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
-			ethToolsLogsMonitorPull()
+			ethToolsLogsMonitorPush()
 			return
 		},
 	}
