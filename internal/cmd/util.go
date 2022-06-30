@@ -3,10 +3,13 @@ package cmd
 import (
 	"context"
 	"fmt"
+	"io/ioutil"
 	"math/big"
 	"mymetas_pub/internal/service/eth"
+	"strings"
 	"time"
 
+	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
 )
 
@@ -54,6 +57,42 @@ func TriggerSendTransaction() {
 			"value": big.NewInt(1000),
 		}
 		txid, err := client.EthSendTransaction(context.Background(), msg)
+		eth.Assert(err)
+		fmt.Println("trigger txid: ", txid.Hex())
+	}
+}
+
+func TriggerSendContractTransaction() {
+	abiBytes, err := ioutil.ReadFile(AbiBytesPath)
+	eth.Assert(err)
+	tokenAbi, err := abi.JSON(strings.NewReader(string(abiBytes)))
+	eth.Assert(err)
+
+	addrBytes, err := ioutil.ReadFile(HappyTokenAddrPath)
+	eth.Assert(err)
+	contractAddress := common.HexToAddress(string(addrBytes))
+
+	client, err := eth.Dial("http://localhost:8545")
+	eth.Assert(err)
+
+	ctx := context.Background()
+
+	accounts, err := client.EthAccounts(ctx)
+	eth.Assert(err)
+
+	data, err := tokenAbi.Pack("transfer", accounts[1], big.NewInt(100))
+	eth.Assert(err)
+	msg := map[string]interface{}{
+		"from": accounts[0],
+		"to":   contractAddress,
+		//"data": common.ToHex(data),
+		"data": "0x" + common.Bytes2Hex(data),
+		"gas":  big.NewInt(4000000),
+	}
+
+	ticker := time.Tick(5 * time.Second)
+	for range ticker {
+		txid, err := client.EthSendTransaction(ctx, msg)
 		eth.Assert(err)
 		fmt.Println("trigger txid: ", txid.Hex())
 	}

@@ -26,6 +26,7 @@ func main() {
 	cmd.Main.AddCommand(&cmd.EthToolsBlockMonitorPush)
 	cmd.Main.AddCommand(&cmd.EthToolsBlockPendingMonitorPull)
 	cmd.Main.AddCommand(&cmd.EthToolsBlockPendingMonitorPush)
+	cmd.Main.AddCommand(&cmd.EthToolsLogsMonitorPull)
 
 	// private key, public key & account
 	cmd.Main.AddCommand(&cmd.GenerateKey)
