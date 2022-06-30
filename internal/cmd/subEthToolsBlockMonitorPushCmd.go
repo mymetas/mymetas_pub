@@ -26,7 +26,9 @@ func push_monitor() {
 			fmt.Println("captured block hash: ", header.Hash().Hex())
 			blockInfo, err := client.EthGetBlockByHash(context.Background(), header.Hash())
 			eth.Assert(err)
-			fmt.Println("block is:", blockInfo)
+			for _, tx := range blockInfo.Transactions() {
+				fmt.Println("tx:", tx.Hash().Hex())
+			}
 		}
 
 		if index == 10 {
