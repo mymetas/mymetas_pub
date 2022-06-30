@@ -3,7 +3,9 @@ package cmd
 import (
 	"context"
 	"fmt"
+	"math/big"
 	"mymetas_pub/internal/service/eth"
+	"time"
 
 	"github.com/ethereum/go-ethereum/common"
 )
@@ -33,4 +35,26 @@ func DisplayBalance(ctx context.Context, client eth.Client, address []common.Add
 	balance1, err := client.EthGetBalance(ctx, address[1], "latest")
 	eth.Assert(err)
 	fmt.Println("address[1]: ", address[1], " balance: ", balance1)
+}
+
+func TriggerSendTransaction() {
+	client, err := eth.Dial("http://localhost:8545")
+	eth.Assert(err)
+
+	ctx := context.Background()
+
+	accounts, err := client.EthAccounts(ctx)
+	eth.Assert(err)
+
+	timer := time.Tick(5 * time.Second)
+	for range timer {
+		msg := map[string]interface{}{
+			"from":  accounts[0],
+			"to":    accounts[1],
+			"value": big.NewInt(1000),
+		}
+		txid, err := client.EthSendTransaction(context.Background(), msg)
+		eth.Assert(err)
+		fmt.Println("trigger txid: ", txid.Hex())
+	}
 }

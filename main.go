@@ -22,6 +22,8 @@ func main() {
 	cmd.Main.AddCommand(&cmd.EthToolsSendRawTransaction)
 	cmd.Main.AddCommand(&cmd.EthToolsDeployAccessContract1)
 	cmd.Main.AddCommand(&cmd.EthToolsDeployAccessContract2GoVersion)
+	cmd.Main.AddCommand(&cmd.EthToolsBlockMonitorPull)
+	cmd.Main.AddCommand(&cmd.EthToolsBlockMonitorPush)
 
 	// private key, public key & account
 	cmd.Main.AddCommand(&cmd.GenerateKey)
