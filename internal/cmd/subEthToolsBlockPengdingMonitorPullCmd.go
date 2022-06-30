@@ -26,12 +26,13 @@ func pull_pending_monitor() {
 		for _, hash := range hashes {
 			fmt.Println("monitored pending txid: ", hash.Hex())
 
-			blockInfo, err := client.EthGetBlockByHash(context.Background(), hash)
-			eth.Assert(err)
-			for _, tx := range blockInfo.Transactions() {
-				fmt.Println("tx:", tx)
-				fmt.Println("tx:", tx.Hash().Hex())
-			}
+			//........error, becase this is pending block
+			// blockInfo, err := client.EthGetBlockByHash(context.Background(), hash)
+			// eth.Assert(err)
+			// for _, tx := range blockInfo.Transactions() {
+			// 	fmt.Println("tx:", tx)
+			// 	fmt.Println("tx:", tx.Hash().Hex())
+			// }
 		}
 
 		if index == 10 {
