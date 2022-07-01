@@ -173,7 +173,7 @@ func ethToolsSendRawTransaction3() {
 		panic(err)
 	}
 	privateString := "4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d"
-	web3.Eth.SetAccount(privateString)
+	//web3.Eth.SetAccount(privateString)
 	// set default account by private key
 	privateKey := privateString
 	kovanChainId := int64(1337)
