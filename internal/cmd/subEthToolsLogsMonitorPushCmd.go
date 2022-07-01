@@ -6,10 +6,12 @@ import (
 	"mymetas_pub/internal/service/eth"
 	"time"
 
+	"github.com/ethereum/go-ethereum"
+	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/gogf/gf/v2/os/gcmd"
 )
 
-func push_logs_monitor() {
+func push_logs_monitor1() {
 	client, err := eth.Dial("http://localhost:8545")
 	eth.Assert(err)
 
@@ -27,6 +29,35 @@ func push_logs_monitor() {
 		eth.Assert(err)
 		for _, log := range logs {
 			fmt.Printf("captured log:%+v\n", log)
+		}
+
+		if index >= 10 {
+			return
+		}
+		index++
+	}
+}
+
+func push_logs_monitor() {
+	client, err := eth.Dial("ws://localhost:8545")
+	eth.Assert(err)
+
+	ctx := context.Background()
+
+	query := &ethereum.FilterQuery{}
+	logs := make(chan types.Log)
+	sub, _ := client.SubscribeFilterLogs(
+		ctx,
+		*query,
+		logs)
+
+	index := 0
+	for {
+		select {
+		case err := <-sub.Err():
+			panic(err)
+		case log := <-logs:
+			fmt.Println("log txid:", log.TxHash.Hex())
 		}
 
 		if index >= 10 {
